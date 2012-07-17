@@ -46,9 +46,23 @@ window.onload = function() {
         });
       }
 
+      // 
+      // ユーザーアイコンの処理
+      //
       user.scaleX = user.scaleY = 0.5 + Math.random();
       user.x = (320 - user.width) * Math.random();
       user.y = (320 - user.height) * Math.random();
+      // アイコン移動
+      for (var i = 0; i<2 + Math.random() * 3; i += 1) {  // 2-5点の間をランダムに移動する
+        user.tl.tween({
+          time:20 + Math.random() * 20,
+          x:(320 - user.width) * Math.random(),
+          y:(320 - user.height) * Math.random(),
+          easing:enchant.Easing.SIN_EASEINOUT}  // イージングの設定
+          );
+      }
+      user.tl.tween({time:30, x:user.x, y:user.y, easing:enchant.Easing.SIN_EASEINOUT}).loop();
+
       game.rootScene.addChild(user);
     });
   };
